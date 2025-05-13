@@ -33,4 +33,8 @@ with st.sidebar:
         value=(min_price, max_price)
     )
 
-    #filtro por variedades
+    varieties = st.multiselect(
+        "Selecione as variedades:",
+        options=sorted(df['variety'].dropna().unique()),
+        default=[]
+    )
