@@ -36,7 +36,7 @@ with st.sidebar:
     varieties = st.multiselect(
         "Selecione as variedades:",
         options=sorted(df['variety'].dropna().unique()),
-        default=[]
+        
     )
 
 filtered_df = df[
