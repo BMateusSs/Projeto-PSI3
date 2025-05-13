@@ -14,7 +14,15 @@ with st.sidebar:
         options=df['country'].unique(),
         default=['US', 'France', 'Italy']
     )
-    #Filtro por faixa de pontuação
+
+    min_points = int(df['points'].min())
+    max_points = int(df['points'].max())
+    points_range = st.slider(
+        label="Faixa de pontuação:",
+        min_value=min_points,
+        max_value=max_points,
+        value=(min_points, max_points)
+    )
 
     #filtro por faixa de preco
 
