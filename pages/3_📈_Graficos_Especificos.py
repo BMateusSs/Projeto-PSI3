@@ -24,6 +24,13 @@ with st.sidebar:
         value=(min_points, max_points)
     )
 
-    #filtro por faixa de preco
+    min_price = int(df['price'].min())
+    max_price = int(df['price'].max())
+    price_range = st.slider(
+        label="Faixa de preço (USD):",
+        min_value=min_price,
+        max_value=max_price,
+        value=(min_price, max_price)
+    )
 
     #filtro por variedades
