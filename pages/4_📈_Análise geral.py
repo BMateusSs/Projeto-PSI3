@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 
 df = pd.read_parquet('data/processed/winemag.parquet')
 df = df[df['designation'] != 'Non-designated']
@@ -14,8 +16,8 @@ fig = px.bar(
     df_designation_count,
     x='designation',
     y='count',
-    title='Quantidade de descrições por `designation`',
-    labels={'designation': 'Designation', 'count': 'Quantidade'}
+    title='Quantidade de descrições por designação',
+    labels={'designation': 'Designação', 'count': 'Quantidade'}
 )
 
 fig.update_layout(
@@ -36,8 +38,8 @@ fig = px.bar(
     df_province_count,
     x='province',
     y='count',
-    title='Quantidade de descrições por province',
-    labels={'province': 'province', 'count': 'Quantidade'}
+    title='Quantidade de descrições por estado',
+    labels={'province': 'Estado', 'count': 'Quantidade'}
 )
 
 fig.update_layout(
@@ -68,3 +70,14 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig)
+
+text = " ".join(df["description"].dropna())
+
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+
+st.subheader("Nuvem de Palavras das Descrições de Vinhos")
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.imshow(wordcloud, interpolation='bilinear')
+ax.axis("off")
+st.pyplot(fig)
+
