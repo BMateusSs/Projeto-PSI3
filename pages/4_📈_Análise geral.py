@@ -4,7 +4,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 
-df = pd.read_parquet('data/processed/winemag.parquet')
+df = pd.read_parquet('../data/processed/winemag.parquet')
 df = df[df['designation'] != 'Non-designated']
 
 df_designation_count = df.groupby('designation').size().reset_index(name='count')
