@@ -44,3 +44,5 @@ filtered_df = df[
     (df['points'] >= points_range[0]) & (df['points'] <= points_range[1]) &
     (df['price'] >= price_range[0]) & (df['price'] <= price_range[1])
 ]
+
+
